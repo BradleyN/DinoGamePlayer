@@ -1,0 +1,27 @@
+import pyautogui
+import time
+import keyboard
+
+time.sleep(5)
+pyautogui.keyDown('space')
+pyautogui.keyUp('space')
+
+while True:
+	if keyboard.is_pressed('q'):
+		break
+	
+	screenshot1 = pyautogui.screenshot()
+	screenshot2 = pyautogui.screenshot()
+
+	croppedScreenShot1 = screenshot1.crop((750,350,800,365))  
+	croppedScreenShot2 = screenshot2.crop((750,350,800,365))
+	croppedScreenshot3 = screenshot1.crop((750,320,800,340))
+	croppedScreenshot4 = screenshot2.crop((750,320,800,340))
+	croppedScreenshot5 = screenshot1.crop((100,100,101,101))
+
+	if (croppedScreenShot1.tobytes() != croppedScreenShot2.tobytes()) or (croppedScreenshot3.tobytes() != croppedScreenshot4.tobytes()):
+		time.sleep(0.05)                   
+		pyautogui.keyDown('space')
+		pyautogui.keyUp('space')
+		print('Jump!')
+	else: time.sleep(0.01)
